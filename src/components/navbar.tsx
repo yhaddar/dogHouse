@@ -51,7 +51,7 @@ export const Navbar = () => {
                                 <Box width={"100%"} className={""}>
                                     <Heading
                                         as={"h2"}
-                                        size={"7"}
+                                        size={"8"}
                                         className={`${logo.className} clr-text`}>
                                         Woofy
                                     </Heading>

@@ -1,4 +1,4 @@
-import {Lilita_One, Ubuntu} from "next/font/google";
+import {Caveat, Lilita_One, Ubuntu} from "next/font/google";
 import {NextFont} from "next/dist/compiled/@next/font";
 
 export const fontFamily1: NextFont = Ubuntu({
@@ -7,8 +7,8 @@ export const fontFamily1: NextFont = Ubuntu({
     subsets: ["latin"]
 });
 
-export const logo: NextFont = Lilita_One({
-    weight: '400',
-    variable: "--font-lilita-one-sans-serif",
+export const logo: NextFont = Caveat({
+    weight: ['700'],
+    variable: "--font-caveat-sans-serif",
     subsets: ["latin"]
 });
