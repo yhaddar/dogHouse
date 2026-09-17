@@ -23,7 +23,7 @@
     content: "";
     position: absolute;
     width: 0;
-    height: 4px;
+    height: 3px;
     background: var(--primary) !important;
     bottom: -2px;
     left: 0;
@@ -43,4 +43,12 @@
 
 .bg-primary {
     background-color: var(--secondary) !important;
+}
+
+.bg-border{
+    border-bottom: 2px solid var(--primary) !important;
+}
+
+.clr-text {
+    color: var(--primary) !important;
 }

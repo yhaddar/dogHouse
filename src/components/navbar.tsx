@@ -1,12 +1,46 @@
+"use client";
 import {Box, Button, Flex, Heading} from "@radix-ui/themes";
 import {fontFamily1, logo} from "@/utils/fonts";
-import React from "react";
+import React, {useEffect} from "react";
 import Link from "next/link";
+import {usePathname} from "next/navigation";
+import {pages} from "@/utils/interfaces";
 
-export const Navbar = async () => {
+export const Navbar = () => {
 
-    const pages: string[] = ["home","category", "about", "contact"];
+    const pages: pages[] = [
+        {
+            page: "home",
+            path: "/",
+        },
+        {
+            page: "category",
+            path: "/category",
+        },
+        {
+            page: "about",
+            path: "/about",
+        },
+        {
+            page: "contact",
+            path: "/contact",
+        },
+    ];
 
+    const pathname: string = usePathname();
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 0) {
+                document.querySelector(".header")?.classList.add("bg-border");
+            } else {
+                document.querySelector(".header")?.classList.remove("bg-border");
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
     return (
         <>
             <nav className={"w-full flex justify-center fixed header"}>
@@ -15,14 +49,10 @@ export const Navbar = async () => {
                         <Box className={""} width={"36%"}>
                             <Flex as={"div"} width={"100%"} justify={"between"}>
                                 <Box width={"100%"} className={""}>
-                                    {/*<Image*/}
-                                    {/*    src={logoImage}*/}
-                                    {/*    alt={"logo image"}*/}
-                                    {/*    loading={"eager"} />*/}
                                     <Heading
                                         as={"h2"}
                                         size={"7"}
-                                        className={`${logo.className}`}>
+                                        className={`${logo.className} clr-text`}>
                                         Woofy
                                     </Heading>
                                 </Box>
@@ -31,12 +61,12 @@ export const Navbar = async () => {
                         <Box className={""} width={"80%"}>
                             <Flex justify={"between"} align={"center"} height={"100%"}>
                                 {
-                                    pages.map((page: string, index: number) =>
+                                    pages.map((page: pages, index: number) =>
                                         <Link
                                             key={index}
-                                            href={`${page === "home" ? '/' : `/${page}`}`}
-                                            className={`${fontFamily1.className} capitalize page-hover cursor-pointer active:scale-95`}
-                                        >{page}</Link>
+                                            href={`${page.path}`}
+                                            className={`${fontFamily1.className} ${ page.path === pathname ? 'active' : ''} capitalize page-hover cursor-pointer active:scale-95`}
+                                        >{page.page}</Link>
                                     )
                                 }
                             </Flex>
