@@ -4,17 +4,17 @@ my-app/
 │   │
 │   ├── app/
 │   │   ├── (public)/
-│   │   │   ├── page.tsx
+│   │   │   ├── home.tsx
 │   │   │   ├── login/
-│   │   │   │   └── page.tsx
+│   │   │   │   └── home.tsx
 │   │   │   └── register/
-│   │   │       └── page.tsx
+│   │   │       └── home.tsx
 │   │   │
 │   │   ├── (dashboard)/
 │   │   │   ├── dashboard/
-│   │   │   │   └── page.tsx
+│   │   │   │   └── home.tsx
 │   │   │   └── users/
-│   │   │       └── page.tsx
+│   │   │       └── home.tsx
 │   │   │
 │   │   ├── api/
 │   │   │   ├── auth/
