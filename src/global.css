@@ -5,3 +5,38 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+:root{
+    --primary: #003459;
+    --secondary: #F7DBA7;
+}
+
+.page-hover:hover{
+    color: var(--primary) !important;
+}
+.page-hover {
+    position: relative;
+    display: inline-block;
+}
+
+.page-hover::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 4px;
+    background: var(--primary) !important;
+    bottom: -2px;
+    left: 0;
+    border-radius: 5px;
+    transition: width 0.3s ease-in-out;
+}
+
+.page-hover:hover::before {
+    width: 100%;
+}
+
+.active::before {
+    content: "";
+    position: absolute;
+    width: 13px;
+}
