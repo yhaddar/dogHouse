@@ -1,25 +1,30 @@
-import {Box, Button, Flex} from "@radix-ui/themes";
-import Image from "next/image";
-import logoImage from "../../public/images/paw-print.png";
-import {fontFamily1} from "@/utils/fonts";
+import {Box, Button, Flex, Heading} from "@radix-ui/themes";
+import {fontFamily1, logo} from "@/utils/fonts";
 import React from "react";
 import Link from "next/link";
 
 export const Navbar = async () => {
 
     const pages: string[] = ["home","category", "about", "contact"];
+
     return (
         <>
-            <nav className={"w-full flex justify-center fixed"}>
+            <nav className={"w-full flex justify-center fixed header"}>
                 <Box as={"div"} className={"container py-2!"}>
                     <Flex as={"div"} display={"flex"} gap={"2"} justify={"between"} align={"center"}>
-                        <Box className={""}>
+                        <Box className={""} width={"36%"}>
                             <Flex as={"div"} width={"100%"} justify={"between"}>
-                                <Box width={"18%"}>
-                                    <Image
-                                        src={logoImage}
-                                        alt={"logo image"}
-                                        loading={"eager"} />
+                                <Box width={"100%"} className={""}>
+                                    {/*<Image*/}
+                                    {/*    src={logoImage}*/}
+                                    {/*    alt={"logo image"}*/}
+                                    {/*    loading={"eager"} />*/}
+                                    <Heading
+                                        as={"h2"}
+                                        size={"7"}
+                                        className={`${logo.className}`}>
+                                        Woofy
+                                    </Heading>
                                 </Box>
                             </Flex>
                         </Box>

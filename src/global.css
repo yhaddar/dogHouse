@@ -40,3 +40,7 @@
     position: absolute;
     width: 13px;
 }
+
+.bg-primary {
+    background-color: var(--secondary) !important;
+}
