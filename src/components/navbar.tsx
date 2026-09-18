@@ -18,6 +18,14 @@ export const Navbar = () => {
             path: "/category",
         },
         {
+            page: "products",
+            path: "/products",
+        },
+        {
+            page: "blogs",
+            path: "/blogs",
+        },
+        {
             page: "about",
             path: "/about",
         },
