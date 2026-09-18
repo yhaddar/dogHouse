@@ -41,7 +41,7 @@ export const Navbar = () => {
 
     return (
         <>
-            <nav className={"w-full flex justify-center fixed header bg-primary bg-border-bottom z-10"}>
+            <nav className={"w-full flex justify-center fixed header bg-primary bg-border-bottom z-1"}>
                 <Box as={"div"} className={"container py-2!"}>
                     <Flex as={"div"} display={"flex"} gap={"2"} justify={"between"} align={"center"}>
                         <Box className={""} width={"36%"}>
