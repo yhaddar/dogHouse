@@ -31,7 +31,7 @@ export const Navbar = () => {
 
     return (
         <>
-            <nav className={"w-full flex justify-center fixed header bg-primary bg-border z-10"}>
+            <nav className={"w-full flex justify-center fixed header bg-primary bg-border-bottom z-10"}>
                 <Box as={"div"} className={"container py-2!"}>
                     <Flex as={"div"} display={"flex"} gap={"2"} justify={"between"} align={"center"}>
                         <Box className={""} width={"36%"}>
@@ -65,7 +65,7 @@ export const Navbar = () => {
                                    <Button
                                        size="2"
                                        variant="surface"
-                                       className={"bg-blue-900! text-white! py-6! px-6! active:scale-95! cursor-pointer!"}
+                                       className={"bg-btn text-white! py-6! px-6! active:scale-95! cursor-pointer!"}
                                        radius={"large"}>
                                        Join the community
                                    </Button>

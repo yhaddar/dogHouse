@@ -46,8 +46,16 @@
     background-color: var(--secondary) !important;
 }
 
-.bg-border{
+.bg-btn{
+    background: var(--primary) !important;
+}
+
+.bg-border-bottom{
     border-bottom: 2px solid var(--primary) !important;
+}
+
+.bg-border{
+    border: 1px solid var(--primary) !important;
 }
 
 .clr-text {

@@ -21,14 +21,14 @@ export const TextUI = () => {
                       <Button
                           size="2"
                           variant="surface"
-                          className={"text-white! py-6! px-8! active:scale-95! cursor-pointer! bg-transparent! border! border-blue-900!"}
+                          className={"text-white! py-6! px-8! active:scale-95! cursor-pointer! bg-transparent! border! bg-border"}
                           radius={"large"}>
                           View Intro <PlayIcon />
                       </Button>
                       <Button
                           size="2"
                           variant="surface"
-                          className={"bg-blue-900! text-white! py-6! px-8! active:scale-95! cursor-pointer!"}
+                          className={"bg-btn text-white! py-6! px-8! active:scale-95! cursor-pointer!"}
                           radius={"large"}>
                           Explore now
                       </Button>
