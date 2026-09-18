@@ -1,7 +1,7 @@
 "use client";
 import {Box, Button, Flex, Heading} from "@radix-ui/themes";
 import {fontFamily1, logo} from "@/utils/fonts";
-import React, {useEffect} from "react";
+import React from "react";
 import Link from "next/link";
 import {usePathname} from "next/navigation";
 import {pages} from "@/utils/interfaces";
@@ -29,21 +29,9 @@ export const Navbar = () => {
 
     const pathname: string = usePathname();
 
-    useEffect(() => {
-        const handleScroll = () => {
-            if (window.scrollY > 0) {
-                document.querySelector(".header")?.classList.add("bg-border");
-            } else {
-                document.querySelector(".header")?.classList.remove("bg-border");
-            }
-        };
-
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
     return (
         <>
-            <nav className={"w-full flex justify-center fixed header"}>
+            <nav className={"w-full flex justify-center fixed header bg-primary bg-border z-10"}>
                 <Box as={"div"} className={"container py-2!"}>
                     <Flex as={"div"} display={"flex"} gap={"2"} justify={"between"} align={"center"}>
                         <Box className={""} width={"36%"}>

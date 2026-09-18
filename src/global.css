@@ -9,6 +9,7 @@
 :root{
     --primary: #003459;
     --secondary: #F7DBA7;
+    --opacity-cover: #000000bf;
 }
 
 .page-hover:hover{
@@ -51,4 +52,8 @@
 
 .clr-text {
     color: var(--primary) !important;
+}
+
+.opacity-cover::before {
+    background: var(--opacity-cover) !important;
 }
