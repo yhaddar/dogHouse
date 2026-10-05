@@ -18,7 +18,7 @@ export const Header = (props: headerProps) => {
                         <Box as={"div"} className={""} alignSelf={"center"}>
                             <Link
                                 href={props.href}
-                                className={`clr-text active:scale-95! flex! items-center! gap-1! before:mb-0 page-hover cursor-pointer! ${fontFamily1.className} italic! text-sm!`}>
+                                className={`clr-text active:scale-95! flex! items-center! gap-1! before:mb-0 hover:text-[#003459] cursor-pointer! ${fontFamily1.className} italic! text-sm!`}>
                                 View More <ChevronRightIcon />
                             </Link>
                         </Box>

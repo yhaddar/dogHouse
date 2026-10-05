@@ -24,7 +24,6 @@ const navigationLinks = [
 export const Navbar = () => {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
-  console.log(pathname);
 
   return (
     <Box as="div" role="banner" className="fixed inset-x-0 top-0 z-50 bg-transparent text-[#003459] flex! justify-center">
