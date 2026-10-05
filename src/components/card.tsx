@@ -1,9 +1,12 @@
 import { Box, Heading, Text } from "@radix-ui/themes";
 import bgImage from "../../public/images/home-cover.jpg";
-import { fontFamily1 } from "@/utils/fonts";
+import {fontFamily1, fontFamily2} from "@/utils/fonts";
 import Link from "next/link";
+import {types} from "@/utils/interfaces";
+import Image from "next/image";
+import giftImage from "../../public/images/gift.png";
 
-export const Card = () => (
+export const Card = ({type, i}: {type: types, i: number}) => (
   <Box
     as="div"
     className="rounded-lg w-[23%] flex justify-center shadow-lg shadow-black/3 hover:scale-95"
@@ -37,14 +40,14 @@ export const Card = () => (
        >
          <Text as="p" className="text-[12px]!">
            <Text as="span" className="opacity-70!">
-             Gender :
+             {type === types.CATEGORY ? 'Gender' : 'Product'} :
            </Text>{" "}
            <Text as="span" className="opacity-70! font-bold">
              Male
            </Text>{" "}
            ·{" "}
            <Text as="span" className="opacity-70!">
-             Age :
+             {type === types.CATEGORY ? 'Age' : 'Size'} :
            </Text>{" "}
            <Text as="span" className="opacity-70! font-bold">
              02 Month
@@ -60,6 +63,11 @@ export const Card = () => (
          <Heading as="h6" className="text-[16px]!">
            2 22 000.00 DH
          </Heading>
+         {
+           type === types.PRODUCT && i % 2 == 0 ? <Box as={"div"} className={"bg-[#f7dba7]/60 p-2! rounded-[5px]! flex! gap-3 items-center"}>
+               <Image src={giftImage.src} width={20} height={20} alt={"gift image for products card"}  /> ·{" "} <Text as={"span"} className={`${fontFamily1.className}! bold! capitalize text-[13px]`}>free toy and free shaker</Text>
+             </Box> : null
+         }
        </Box>
      </Box>
    </Link>

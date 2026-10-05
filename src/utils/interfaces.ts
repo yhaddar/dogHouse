@@ -8,3 +8,8 @@ export interface headerProps {
     subtitle: string;
     href: string;
 }
+
+export enum types {
+    PRODUCT = "product",
+    CATEGORY = "category"
+}

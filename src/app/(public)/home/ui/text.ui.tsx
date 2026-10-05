@@ -38,8 +38,8 @@ export const TextUI = () => {
                             Having a pet means you have more joy, a new friend, a happy person who will always be with you to have fun. We have 200+ different pets that can meet your needs!
                         </Text>
                         <Flex className="mt-5! flex-wrap items-center gap-3 max-sm:mt-5">
-                            <Button withColor={false} text={"View Intro"} link={"about"} px={"7"} textSize={"13"} Icon={PlayIcon} />
-                            <Button  text={"Explore Now"} link={"category"} px={"8"} textSize={"14"} />
+                            <Button withColor={false} text={"View Intro"} link={"about"}  textSize={"13"} Icon={PlayIcon} />
+                            <Button  text={"Explore Now"} link={"category"} textSize={"14"} />
                         </Flex>
                     </Box>
                 </Box>

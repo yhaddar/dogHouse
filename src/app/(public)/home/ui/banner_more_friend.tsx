@@ -8,7 +8,7 @@ import React from "react";
 const bannerImage = "/images/home/banner-more-friend.png";
 
 export const BannerMoreFriend = () => (
-  <Box as={"div"} className={"flex! justify-center"}>
+  <Box as={"div"} className={"flex! justify-center w-full!"}>
     <Box
         role="region"
         aria-label="One more friend"
@@ -45,8 +45,8 @@ export const BannerMoreFriend = () => (
             that can meet your needs!
           </Text>
           <Flex className="mt-5! flex-wrap items-center gap-3 max-sm:mt-5">
-            <Button withColor={false} text={"View Intro"} link={"about"} px={"7"} textSize={"13"} Icon={PlayIcon} />
-            <Button  text={"Explore Now"} link={"category"} px={"8"} textSize={"14"} />
+            <Button withColor={false} text={"View Intro"} link={"about"}textSize={"13"} Icon={PlayIcon} />
+            <Button  text={"Explore Now"} link={"category"} textSize={"14"} />
           </Flex>
         </Box>
       </Box>

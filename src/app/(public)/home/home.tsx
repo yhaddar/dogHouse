@@ -1,11 +1,13 @@
 import { BannerMoreFriend } from "@/app/(public)/home/ui/banner_more_friend";
-import { ProductsSection } from "@/app/(public)/home/ui/products.section";
+import { CategorySection } from "@/app/(public)/home/ui/category.section";
 import { TextUI } from "@/app/(public)/home/ui/text.ui";
+import {ProductSection} from "@/app/(public)/home/ui/product.section";
 
 export const Home = () => (
   <>
     <TextUI />
-    <ProductsSection />
+    <CategorySection />
     <BannerMoreFriend />
+      <ProductSection />
   </>
 );
