@@ -3,6 +3,7 @@ import { CategorySection } from "@/app/(public)/home/ui/category.section";
 import { TextUI } from "@/app/(public)/home/ui/text.ui";
 import {ProductSection} from "@/app/(public)/home/ui/product.section";
 import {SponsorsSection} from "@/app/(public)/home/ui/sponsors.section";
+import {BannerAdoption} from "@/app/(public)/home/ui/banner_adoption";
 
 export const Home = () => (
   <>
@@ -11,5 +12,6 @@ export const Home = () => (
     <BannerMoreFriend />
       <ProductSection />
       <SponsorsSection />
+      <BannerAdoption />
   </>
 );
