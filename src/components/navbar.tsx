@@ -11,6 +11,7 @@ import {
 import { Box, Flex } from "@radix-ui/themes";
 import { fontFamily1 } from "@/utils/fonts";
 import Image from "next/image";
+import {Button} from "@/components/Button";
 
 const navigationLinks = [
   { label: "Home", href: "/" },
@@ -59,14 +60,7 @@ export const Navbar = () => {
               ))}
             </Flex>
 
-            <Flex className="hidden shrink-0 items-center gap-3.5 min-[1280px]:flex">
-              <Link
-                  href="/login"
-                  className="inline-flex h-11 items-center whitespace-nowrap rounded-[50px] bg-[#003459] px-5! text-[14px] active:scale-95 font-bold leading-6 text-[#fdfdfd] transition-colors hover:bg-[#002a48]"
-              >
-                Join the community
-              </Link>
-            </Flex>
+            <Button text={"Join the community"} link={"login"} />
 
             <button
                 type="button"
