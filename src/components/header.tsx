@@ -15,13 +15,15 @@ export const Header = (props: headerProps) => {
                             <Text as={"p"} className={`text-black ${fontFamily2.className} text-md italic!`}>{props.subtitle}</Text>
                             <Heading as={"h2"} className={`clr-text ${fontFamily1.className} capitalize font-bold!`}>{props.title}</Heading>
                         </Box>
-                        <Box as={"div"} className={""} alignSelf={"center"}>
-                            <Link
-                                href={props.href}
-                                className={`clr-text active:scale-95! flex! items-center! gap-1! before:mb-0 hover:text-[#003459] cursor-pointer! ${fontFamily1.className} italic! text-sm!`}>
-                                View More <ChevronRightIcon />
-                            </Link>
-                        </Box>
+                        {
+                            props.href !== "" ? <Box as={"div"} className={""} alignSelf={"center"}>
+                                <Link
+                                    href={props.href}
+                                    className={`clr-text active:scale-95! flex! items-center! gap-1! before:mb-0 hover:text-[#003459] cursor-pointer! ${fontFamily1.className} italic! text-sm!`}>
+                                    View More <ChevronRightIcon />
+                                </Link>
+                            </Box> : null
+                        }
                     </Flex>
                 </Box>
             </Flex>
