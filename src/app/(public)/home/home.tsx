@@ -4,6 +4,7 @@ import { TextUI } from "@/app/(public)/home/ui/text.ui";
 import {ProductSection} from "@/app/(public)/home/ui/product.section";
 import {SponsorsSection} from "@/app/(public)/home/ui/sponsors.section";
 import {BannerAdoption} from "@/app/(public)/home/ui/banner_adoption";
+import {BlogsSection} from "@/app/(public)/home/ui/blogs.section";
 
 export const Home = () => (
   <>
@@ -13,5 +14,6 @@ export const Home = () => (
       <ProductSection />
       <SponsorsSection />
       <BannerAdoption />
+      <BlogsSection />
   </>
 );

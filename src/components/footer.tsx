@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import {InstagramLogoIcon, PlayIcon, TwitterLogoIcon} from "@radix-ui/react-icons";
 import {fontFamily1} from "@/utils/fonts";
+import {Flex} from "@radix-ui/themes";
 
 const footerLinks = [
     {label: "Home", href: "/"},
@@ -13,7 +14,7 @@ const footerLinks = [
 
 export const Footer = () => {
     return (
-        <footer className={`${fontFamily1.className} mt-12! rounded-t-[40px]! bg-[#FCEED5]! px-5! pb-6! pt-10! text-[#00171F]!`}>
+        <footer className={`${fontFamily1.className} mt-12! rounded-t-[40px] bg-[#FCEED5]! px-5! pb-6! pt-10! text-[#00171F]!`}>
             <div className="mx-auto! max-w-295!">
                 <div className="flex! items-center! justify-between! gap-8! rounded-2xl! bg-[#003459]! p-8! max-md:flex-col! max-md:items-stretch! max-md:p-5!">
                     <h2 className="max-w-90! text-[20px]! font-bold! leading-7! text-white! max-md:max-w-none!">
@@ -55,9 +56,15 @@ export const Footer = () => {
                 <div className="border-t! border-[#CCD1D2]! pt-5!">
                     <div className="grid! grid-cols-3! items-center! gap-4! text-xs! text-[#667479]! max-sm:grid-cols-1! max-sm:justify-items-center!">
                         <p className="max-sm:order-3!">© 2026 Doggo. All rights reserved.</p>
-                        <Link href="/" aria-label="Monito home" className="justify-self-center!">
-                            <Image src="/images/monito-logo.svg" width={115} height={40} alt="Monito" />
-                        </Link>
+                        <Flex className="flex! justify-center!">
+                            <Link href="/" aria-label="Doggo home" className="flex w-28.75 flex-col items-center leading-none text-[#003459]">
+                                <span className="relative text-[30px]! font-extrabold tracking-[-1.5px]">
+                                  Doggo
+                                  <Image src="/images/paw-print.png" alt="" width={100} height={100} aria-hidden="true" className="absolute -right-4! -top-1.75! h-5! w-5!" />
+                                </span>
+                                <span className="mt-1! ml-0! text-[10px] font-bold tracking-[-0.1px]">Pets for Best</span>
+                            </Link>
+                        </Flex>
                         <div className="flex! justify-self-end! gap-6! max-sm:order-2! max-sm:justify-self-center!">
                             <Link href="/terms-of-service">Terms of Service</Link>
                             <Link href="/privacy-policy">Privacy Policy</Link>
