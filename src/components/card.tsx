@@ -64,8 +64,8 @@ export const Card = ({type, i}: {type: types, i: number}) => (
            2 22 000.00 DH
          </Heading>
          {
-           type === types.PRODUCT && i % 2 == 0 ? <Box as={"div"} className={"bg-[#f7dba7]/60 p-2! rounded-[5px]! flex! gap-3 items-center"}>
-               <Image src={giftImage.src} width={20} height={20} alt={"gift image for products card"}  /> ·{" "} <Text as={"span"} className={`${fontFamily1.className}! bold! capitalize text-[13px]`}>free toy and free shaker</Text>
+           type === types.PRODUCT && i % 2 == 0 ? <Box as={"div"} className={"bg-[#f7dba7]/60 p-1! rounded-[5px]! flex! gap-3 items-center"}>
+               <Image src={giftImage.src} width={20} height={20} alt={"gift image for products card"}  /> ·{" "} <Text as={"span"} className={`${fontFamily1.className}! bold! capitalize text-[12px]`}>free toy and free shaker</Text>
              </Box> : null
          }
        </Box>

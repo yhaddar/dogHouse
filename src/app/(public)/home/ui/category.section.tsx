@@ -15,7 +15,7 @@ export const CategorySection = () => (
 
     <Box className="container mx-auto! flex! flex-wrap justify-between gap-y-5 px-5">
       {products.map((product) => (
-        <Card key={product} type={types.CATEGORY} />
+        <Card key={product} type={types.CATEGORY} i={0} />
       ))}
     </Box>
   </Box>
