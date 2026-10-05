@@ -38,12 +38,12 @@ export const Navbar = () => {
               className={`${fontFamily1.className} mx-auto flex min-h-25 w-full max-w-360 items-center justify-between gap-8 px-5 py-7 font-medium sm:px-8 xl:px-[130px]`}
           >
             <Flex className="shrink-0 items-center gap-7 min-[1280px]:gap-12">
-              <Link href="/" aria-label="Monito home" className="flex w-28.75 flex-col items-center leading-none text-[#003459]">
-            <span className="relative text-[25px] font-extrabold tracking-[-1.5px]">
+              <Link href="/" aria-label="Doggo home" className="flex w-28.75 flex-col items-center leading-none text-[#003459]">
+            <span className="relative text-[30px]! font-extrabold tracking-[-1.5px]">
               Doggo
-              <Image src="/images/paw-print.png" alt="" width={100} height={100} aria-hidden="true" className="absolute -right-1.75 top-px h-2.25 w-2.25" />
+              <Image src="/images/paw-print.png" alt="" width={100} height={100} aria-hidden="true" className="absolute -right-4! top-[-7px]! h-5! w-5!" />
             </span>
-                <span className="mt-0.8! text-[9px] font-bold tracking-[-0.1px]">Pets for Best</span>
+                <span className="mt-1! ml-0! text-[10px] font-bold tracking-[-0.1px]">Pets for Best</span>
               </Link>
             </Flex>
 
