@@ -1,188 +1,116 @@
 "use client";
-import {Box, Button, Flex, Heading} from "@radix-ui/themes";
-import {fontFamily1, fontFamily2, logo} from "@/utils/fonts";
-import React from "react";
+
 import Link from "next/link";
-import {usePathname} from "next/navigation";
-import {pages} from "@/utils/interfaces";
-import {Dialog, unstable_PasswordToggleField as PasswordToggleField, Tabs} from "radix-ui";
-import {Cross2Icon, EyeClosedIcon, EyeOpenIcon} from "@radix-ui/react-icons";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+import {
+  Cross1Icon,
+  HamburgerMenuIcon,
+  MagnifyingGlassIcon,
+} from "@radix-ui/react-icons";
+import { Box, Flex } from "@radix-ui/themes";
+import { fontFamily1 } from "@/utils/fonts";
+import Image from "next/image";
+
+const navigationLinks = [
+  { label: "Home", href: "/" },
+  { label: "Category", href: "/category" },
+  { label: "Product", href: "/product" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
+];
 
 export const Navbar = () => {
+  const pathname = usePathname();
+  const [menuOpen, setMenuOpen] = useState(false);
+  console.log(pathname);
 
-    const pages: pages[] = [
-        {
-            page: "home",
-            path: "/",
-        },
-        {
-            page: "category",
-            path: "/category",
-        },
-        {
-            page: "products",
-            path: "/products",
-        },
-        {
-            page: "blogs",
-            path: "/blogs",
-        },
-        {
-            page: "about",
-            path: "/about",
-        },
-        {
-            page: "contact",
-            path: "/contact",
-        },
-    ];
+  return (
+    <Box as="div" role="banner" className="fixed inset-x-0 top-0 z-50 bg-transparent text-[#003459] flex! justify-center">
+        <Box as={"div"} className={"container flex! justify-between"}>
+          <Flex
+              as="div"
+              role="navigation"
+              aria-label="Main navigation"
+              display={"flex"}
+              justify={"between"}
+              className={`${fontFamily1.className} mx-auto flex min-h-25 w-full max-w-360 items-center justify-between gap-8 px-5 py-7 font-medium sm:px-8 xl:px-[130px]`}
+          >
+            <Flex className="shrink-0 items-center gap-7 min-[1280px]:gap-12">
+              <Link href="/" aria-label="Monito home" className="flex w-28.75 flex-col items-center leading-none text-[#003459]">
+            <span className="relative text-[25px] font-extrabold tracking-[-1.5px]">
+              Doggo
+              <Image src="/images/paw-print.png" alt="" width={100} height={100} aria-hidden="true" className="absolute -right-1.75 top-px h-2.25 w-2.25" />
+            </span>
+                <span className="mt-0.8! text-[9px] font-bold tracking-[-0.1px]">Pets for Best</span>
+              </Link>
+            </Flex>
 
-    const pathname: string = usePathname();
+            <Flex className="hidden items-center gap-7 whitespace-nowrap text-[16px] font-bold leading-6 text-[#003459] min-[1280px]:flex min-[1280px]:gap-12">
+              {navigationLinks.map(({ label, href }) => (
+                  <Link
+                      key={href}
+                      href={href}
+                      aria-current={pathname === href ? "page" : undefined}
+                      className={`transition-colors hover:text-[#0077a8] page-hover ${pathname == href ? 'active' : ''}`}
+                  >
+                    {label}
+                  </Link>
+              ))}
+            </Flex>
 
-    return (
-        <>
-            <nav className={"w-full flex justify-center fixed header bg-primary bg-border-bottom z-1"}>
-                <Box as={"div"} className={"container py-2!"}>
-                    <Flex as={"div"} display={"flex"} gap={"2"} justify={"between"} align={"center"}>
-                        <Box className={""} width={"36%"}>
-                            <Flex as={"div"} width={"100%"} justify={"between"}>
-                                <Box width={"100%"} className={""}>
-                                    <Heading
-                                        as={"h2"}
-                                        size={"8"}
-                                        className={`${logo.className} clr-text`}>
-                                        Woofy
-                                    </Heading>
-                                </Box>
-                            </Flex>
-                        </Box>
-                        <Box className={""} width={"80%"}>
-                            <Flex justify={"between"} align={"center"} height={"100%"}>
-                                {
-                                    pages.map((page: pages, index: number) =>
-                                        <Link
-                                            key={index}
-                                            href={`${page.path}`}
-                                            className={`${fontFamily1.className} ${ page.path === pathname ? 'active' : ''} capitalize page-hover cursor-pointer active:scale-95`}
-                                        >{page.page}</Link>
-                                    )
-                                }
-                            </Flex>
-                        </Box>
-                        <Flex width={"35%"} height={"full"} display={"flex"} justify={"end"} align={"center"}>
-                           <Flex as={"div"} display={"flex"} justify={"center"} align={"center"} className={""}>
-                               <Box>
-                                   <Dialog.Root>
-                                       <Dialog.Trigger asChild>
-                                           <Button
-                                               size="2"
-                                               variant="surface"
-                                               className={"bg-btn text-white! py-6! px-6! active:scale-95! cursor-pointer!"}
-                                               radius={"large"}>
-                                               Join the community
-                                           </Button>
-                                       </Dialog.Trigger>
-                                       <Dialog.Portal>
-                                           <Dialog.Overlay className="DialogOverlay" />
-                                           <Dialog.Content className="DialogContent">
-                                               <Dialog.Title className={`DialogTitle ${fontFamily1.className}`}>Join the community</Dialog.Title>
-                                               <Dialog.Description className={`DialogDescription ${fontFamily2.className}`}>
-                                                   Welcome back! Sign in to continue shopping for your furry friend.
-                                               </Dialog.Description>
-                                               <Tabs.Root className="TabsRoot w-full!" defaultValue="tab1">
-                                                   <Tabs.List className="TabsList" aria-label="Manage your account">
-                                                       <Tabs.Trigger className={`${fontFamily2.className} TabsTrigger bg-transparent! text-white!`} value="tab1">
-                                                           Login
-                                                       </Tabs.Trigger>
-                                                       <Tabs.Trigger className={`${fontFamily2.className} TabsTrigger bg-transparent! text-white!`} value="tab2">
-                                                           Register
-                                                       </Tabs.Trigger>
-                                                   </Tabs.List>
-                                                   <Tabs.Content className="TabsContent bg-transparent!" value="tab1">
-                                                       <fieldset className="Fieldset">
-                                                           <label className={`Label text-white! ${fontFamily2.className}!`} htmlFor="email">
-                                                               Email
-                                                           </label>
-                                                           <input className={`Input text-white! ${fontFamily2.className}!`} id="email" placeholder="email@gmail.com" />
-                                                       </fieldset>
-                                                       <fieldset className="Fieldset">
-                                                           <label className={`Label text-white! ${fontFamily2.className}!`} htmlFor="password">
-                                                               Password
-                                                           </label>
-                                                           <PasswordToggleField.Root>
-                                                               <div className="Input flex flex-nowrap items-center justify-center rounded-sm text-white bg-black-a2 shadow-[0_0_0_1px_var(--black-a6)] px-[0.75em] pr-2.25 h-9 gap-2 hover:shadow-[0_0_0_1px_black]">
-                                                                   <PasswordToggleField.Input className="w-full! all-[unset] text-white! box-border h-4.5 text-[15px]  leading-none selection:bg-blackA6 selection:text-white" />
-                                                                   <PasswordToggleField.Toggle className="all-[unset] box-border h-4.5 text-[15px] text-inherit leading-none flex items-center justify-center aspect-square rounded-[0.5px] focus-visible:outline-2 focus-visible:outline-accent-9 focus-visible:outline-offset-[2px]">
-                                                                       <PasswordToggleField.Icon
-                                                                           color={"white"}
-                                                                           visible={<EyeOpenIcon />}
-                                                                           hidden={<EyeClosedIcon />}
-                                                                       />
-                                                                   </PasswordToggleField.Toggle>
-                                                               </div>
-                                                           </PasswordToggleField.Root>
-                                                       </fieldset>
-                                                       <Box as={"div"}
-                                                            style={{ display: "flex", marginTop: 25, justifyContent: "flex-end" }}
-                                                       >
-                                                           <Dialog.Close asChild>
-                                                               <button className="Button green cursor-pointer!">Login</button>
-                                                           </Dialog.Close>
-                                                       </Box>
-                                                   </Tabs.Content>
-                                                   <Tabs.Content className="TabsContent bg-transparent!" value="tab2">
-                                                       <fieldset className="Fieldset">
-                                                           <label className={`Label text-white! ${fontFamily2.className}!`} htmlFor="email">
-                                                               Full Name
-                                                           </label>
-                                                           <input className={`Input text-white! ${fontFamily2.className}!`} id="email" placeholder="John Doe" />
-                                                       </fieldset>
-                                                       <fieldset className="Fieldset">
-                                                           <label className={`Label text-white! ${fontFamily2.className}!`} htmlFor="email">
-                                                               Email
-                                                           </label>
-                                                           <input className={`Input text-white! ${fontFamily2.className}!`} id="email" placeholder="email@gmail.com" />
-                                                       </fieldset>
-                                                       <fieldset className="Fieldset">
-                                                           <label className={`Label text-white! ${fontFamily2.className}!`} htmlFor="password">
-                                                               Password
-                                                           </label>
-                                                           <PasswordToggleField.Root>
-                                                               <div className="Input flex flex-nowrap items-center justify-center rounded-sm text-white bg-black-a2 shadow-[0_0_0_1px_var(--black-a6)] px-[0.75em] pr-2.25 h-9 gap-2 hover:shadow-[0_0_0_1px_black]">
-                                                                   <PasswordToggleField.Input className="w-full! all-[unset] text-white! box-border h-4.5 text-[15px]  leading-none selection:bg-blackA6 selection:text-white" />
-                                                                   <PasswordToggleField.Toggle className="all-[unset] box-border h-4.5 text-[15px] text-inherit leading-none flex items-center justify-center aspect-square rounded-[0.5px] focus-visible:outline-2 focus-visible:outline-accent-9 focus-visible:outline-offset-[2px]">
-                                                                       <PasswordToggleField.Icon
-                                                                           color={"white"}
-                                                                           visible={<EyeOpenIcon />}
-                                                                           hidden={<EyeClosedIcon />}
-                                                                       />
-                                                                   </PasswordToggleField.Toggle>
-                                                               </div>
-                                                           </PasswordToggleField.Root>
-                                                       </fieldset>
-                                                       <Box as={"div"}
-                                                            style={{ display: "flex", marginTop: 25, justifyContent: "flex-end" }}
-                                                       >
-                                                           <Dialog.Close asChild>
-                                                               <button className="Button green cursor-pointer!">Register</button>
-                                                           </Dialog.Close>
-                                                       </Box>
-                                                   </Tabs.Content>
-                                               </Tabs.Root>
-                                               <Dialog.Close asChild>
-                                                   <button className="IconButton cursor-pointer!" aria-label="Close">
-                                                       <Cross2Icon />
-                                                   </button>
-                                               </Dialog.Close>
-                                           </Dialog.Content>
-                                       </Dialog.Portal>
-                                   </Dialog.Root>
-                               </Box>
-                           </Flex>
-                        </Flex>
-                    </Flex>
-                </Box>
-            </nav>
-        </>
-    )
-}
+            <Flex className="hidden shrink-0 items-center gap-3.5 min-[1280px]:flex">
+              <Link
+                  href="/login"
+                  className="inline-flex h-11 items-center whitespace-nowrap rounded-[50px] bg-[#003459] px-5! text-[14px] active:scale-95 font-bold leading-6 text-[#fdfdfd] transition-colors hover:bg-[#002a48]"
+              >
+                Join the community
+              </Link>
+            </Flex>
+
+            <button
+                type="button"
+                aria-label={menuOpen ? "Close menu" : "Open menu"}
+                aria-expanded={menuOpen}
+                onClick={() => setMenuOpen((open) => !open)}
+                className="min-[1280px]:!hidden"
+                style={{ all: "unset", display: "flex", width: 40, height: 40, flexShrink: 0, alignItems: "center", justifyContent: "center", color: "#003459", cursor: "pointer" }}
+            >
+              {menuOpen ? <Cross1Icon width={21} height={21} /> : <HamburgerMenuIcon width={23} height={23} />}
+            </button>
+          </Flex>
+
+          {menuOpen && (
+              <Box className={`${fontFamily1.className} border-t border-[#e6eaec] bg-[#fdfdfd] px-5 pb-5 pt-3 shadow-lg min-[1280px]:hidden`}>
+                <label className="mb-3 flex h-11 items-center gap-3 rounded-full bg-[#f8f9f9] px-4 text-[#667479]">
+                  <MagnifyingGlassIcon width={20} height={20} aria-hidden="true" />
+                  <input
+                      type="search"
+                      aria-label="Search"
+                      placeholder="Search something here!"
+                      className="min-w-0 flex-1 bg-transparent text-sm text-[#003459] outline-none placeholder:text-[#99a2a5]"
+                      style={{ all: "unset", flex: 1, minWidth: 0, fontSize: 14, lineHeight: "20px", color: "#003459" }}
+                  />
+                </label>
+                <Flex direction="column">
+                  {navigationLinks.map(({ label, href }) => (
+                      <Link
+                          key={href}
+                          href={href}
+                          onClick={() => setMenuOpen(false)}
+                          className="border-b border-[#eef0f1] py-3 text-[16px] font-bold text-[#003459]"
+                      >
+                        {label}
+                      </Link>
+                  ))}
+                </Flex>
+                <Link href="/join" onClick={() => setMenuOpen(false)} className="mt-4 flex w-full justify-center rounded-full bg-[#003459] px-5 py-3 text-[16px] font-bold text-white">
+                  Join the community
+                </Link>
+                <Flex className="mt-4 items-center justify-center gap-2 text-sm text-[#002a48]"><span aria-hidden="true" className="flex h-[11px] w-[11px] items-center justify-center rounded-full bg-[#e00025] text-[7px] leading-none text-[#ffeb00]">★</span> VND</Flex>
+              </Box>
+          )}
+        </Box>
+    </Box>
+  );
+};
