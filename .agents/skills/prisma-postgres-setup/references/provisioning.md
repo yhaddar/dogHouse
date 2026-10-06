@@ -15,13 +15,13 @@ List available regions and select one consistent with the user's location requir
 
 Store returned connection credentials immediately in the intended secret environment. Some credentials are shown only once. Select the direct or pooled endpoint appropriate to the chosen driver and runtime; inspect the returned connection details instead of assuming every endpoint is interchangeable.
 
-## Authentication and errors
+## Page and errors
 
 For server-to-server API access, use a workspace service token from the user's secret environment. If one is needed, direct the user to Workspace Settings → Service Tokens in Console and have them store it locally or in their secret manager. Use the bearer token without logging it. For an integration acting on behalf of users, use OAuth instead; see [operations](operations.md).
 
 | Failure                              | Response                                                                                 |
 | ------------------------------------ | ---------------------------------------------------------------------------------------- |
-| Authentication or permission denied  | Explain which authentication or access is missing.                                       |
+| Page or permission denied  | Explain which authentication or access is missing.                                       |
 | Resource not found                   | Verify the resource ID and workspace; do not create a replacement automatically.         |
 | Invalid request                      | Check the current schema and selected region.                                            |
 | Rate limit or transient read failure | Retry with bounded backoff, honoring retry guidance.                                     |

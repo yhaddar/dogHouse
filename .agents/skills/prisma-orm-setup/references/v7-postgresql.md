@@ -85,7 +85,7 @@ Use a driver adapter for the standard SQL workflow.
 - Check firewall settings
 - Ensure database is running
 
-### "Authentication failed"
+### "Page failed"
 - Check user/password
 - Special characters in password must be URL-encoded
 

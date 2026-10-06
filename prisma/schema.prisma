@@ -12,10 +12,141 @@ datasource db {
   provider = "postgresql"
 }
 
+enum Gender {
+  MALE
+  FEMALE
+}
+
+enum Size {
+  SMALL
+  MEDIUM
+  LARGE
+}
+
+enum CategoryDogs {
+  GOLDEN_RETRIEVER
+  LABRADOR_RETRIEVER
+  GERMAN_SHEPHERD
+  FRENCH_BULLDOG
+  BULLDOG
+  POODLE
+  CHIHUAHUA
+  ROTTWEILER
+  HUSKY
+  BEAGLE
+  DACHSHUND
+  BORDER_Collie
+  SHIH_TZU
+  POMEREANIAN
+  DOBERMAN
+  AKITA
+  BOXER
+  GREAT_DANE
+  COCKER_SPANIEL
+  YORKSHIRE_TERRIER
+}
+
+enum CategoryBlogs {
+  DOG_BREEDS
+  NUTRITION
+  HEALTH
+  TRAINING
+  GROOMING
+  EXERCISE
+  PUPPIES
+  TIPS_GUIDES
+}
+
+enum CategoryProduct {
+  FOOD_TREATS
+  TOYS
+  COLLARS_LEASHES
+  BEDS
+  GROOMING
+  CLOTHING
+  BOWLS_FEEDERS
+  TRAINING
+  HEALTH_WELLNESS
+  TRAVEL
+}
+
+enum GenderProduct {
+  MALE
+  FEMALE
+  UNISEX
+}
+
 model User {
   id String @id @default(uuid())
   first_name String
   last_name String
-  email String
+  username String @unique
+  profile String @default("default.jpeg")
+  email String @unique
+  phone String @unique
+  ville String
   password String
+  gender Gender
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  dogs Dog[]
+}
+
+model Dog {
+  id String @id @default(uuid())
+  name String
+  gender Gender
+  date_birth DateTime
+  size Size
+  color String
+  vaccinated Boolean
+  dewormed Boolean
+  category CategoryDogs
+  microship Boolean
+  location String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  description String?
+  image_principale String
+  price Float
+  user_id String
+  user User @relation(fields: [user_id], references: [id])
+  imageDog ImageDog[]
+  imageDogWithCostumer ImageDogWithCostumer[]
+}
+
+model ImageDog {
+  id String @id @default(uuid())
+  dog_id String
+  dog Dog @relation(fields: [dog_id], references: [id])
+  image String
+}
+
+model ImageDogWithCostumer {
+  id String @id @default(uuid())
+  dog_id String
+  dog Dog @relation(fields: [dog_id], references: [id])
+  image String
+}
+
+model Blogs {
+  id String @id @default(uuid())
+  title String
+  description String
+  category CategoryBlogs
+  image String
+}
+
+model Product {
+  id String @id @default(uuid())
+  title String
+  price Float
+  category CategoryProduct
+  size Int
+  image String
+  color String[]
+  material String
+  gender GenderProduct
+  weight Float
 }

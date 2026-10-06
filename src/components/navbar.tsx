@@ -70,7 +70,7 @@ export const Navbar = () => {
               ))}
             </Flex>
 
-            <Button text={"Join the community"} link={"login"} />
+            <Button text={"Join the community"} link={"authentication/login"} />
 
             <button
                 type="button"
