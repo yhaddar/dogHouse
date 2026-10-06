@@ -13,3 +13,8 @@ export enum types {
     PRODUCT = "product",
     CATEGORY = "category"
 }
+
+export enum Gender {
+    MALE = "male",
+    FEMALE = "female"
+}
