@@ -81,7 +81,7 @@ model User {
   first_name String
   last_name String
   username String @unique
-  profile String @default("default.jpeg")
+  profile String? @default("users/default.jpeg")
   email String @unique
   phone String @unique
   ville String

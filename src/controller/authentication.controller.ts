@@ -1,7 +1,8 @@
 import {Login, Register} from "@/model/User";
 import {NextRequest, NextResponse} from "next/server";
 import {UserRequest} from "@/request/user.request";
-import {sendToS3} from "@/utils/methods";
+import {hashedPassword, sendToS3} from "@/utils/methods";
+import {UserRepository} from "@/repository/user.repository";
 
 export class AuthenticationController {
     static async login(req: NextRequest){
@@ -13,32 +14,33 @@ export class AuthenticationController {
 
     static async register(req: NextRequest){
         try {
-            const user: FormData = await req.formData();
+            const userBody: FormData = await req.formData();
 
-            const users = {
-                first_name: UserRequest.firstName(user.get("first_name")),
-                last_name: UserRequest.lastName(user.get("last_name")),
-                username: await UserRequest.username(user.get("username")),
-                email: await UserRequest.email(user.get("email")),
-                phone: await UserRequest.phone(user.get("phone")),
-                password: UserRequest.password(user.get("password")),
-                ville: UserRequest.ville(user.get("ville")),
-                gender: UserRequest.gender(user.get("gender")),
+            const user = {
+                first_name: UserRequest.firstName(userBody.get("first_name")),
+                last_name: UserRequest.lastName(userBody.get("last_name")),
+                username: await UserRequest.username(userBody.get("username")),
+                email: await UserRequest.email(userBody.get("email")),
+                phone: await UserRequest.phone(userBody.get("phone")),
+                password: await hashedPassword(UserRequest.password(userBody.get("password"))),
+                ville: UserRequest.ville(userBody.get("ville")),
+                gender: UserRequest.gender(userBody.get("gender")),
                 profile: ""
             }
 
-            const image = user.get("profile");
+            const image = userBody.get("profile");
             if(image instanceof File){
                 const profile: string = UserRequest.profile(image);
                 const buffer: Buffer<ArrayBuffer> = Buffer.from(await image.arrayBuffer());
-
+                console.log(user.password);
                 await sendToS3(image, profile, buffer);
-                users.profile = profile;
+                user.profile = profile;
             }
 
-            return NextResponse.json(user.get("profile"));
+            const result: string = await UserRepository.store(user);
+
+            return NextResponse.json(result);
         }catch (err){
-            console.log(err);
             return NextResponse.json({
                 message: err instanceof Error ? err.message : "unknow error",
 

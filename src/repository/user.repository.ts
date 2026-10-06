@@ -1,4 +1,8 @@
+import { XOR } from "@/generated/prisma/internal/prismaNamespace";
+import { UserSelect, UserOmit, UserInclude, UserCreateInput, UserUncheckedCreateInput } from "@/generated/prisma/models";
 import {prisma} from "@/lib/prisma";
+import {Register} from "@/model/User";
+import {DefaultArgs} from "@prisma/client/runtime/client";
 
 export class UserRepository {
 
@@ -29,6 +33,13 @@ export class UserRepository {
         });
 
         return userByPhone != null;
+    }
+
+    static async store(user: any): Promise<string> {
+        await prisma.user.create({
+            data: user
+        });
+        return "your account created successfully.";
     }
 
 }

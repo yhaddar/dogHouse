@@ -9,10 +9,10 @@ export class UserRequest {
         if(!firstName)
             throw new Error("First name is required");
 
-        if(firstName?.toString().includes(" "))
+        if(firstName.toString().includes(" "))
             throw new Error("First name invalid");
 
-        return firstName!.toString();
+        return firstName.toString();
     }
 
     static lastName(lastName: FormDataEntryValue | null): string {
@@ -101,7 +101,7 @@ export class UserRequest {
         else
             if(!supportedImage(profile.name.split(".")[1]))
                 throw new Error("profile type is not supported");
-        return `/users/${randomUUID()}.${profile.name.split(".")[1]}`;
+        return `users/${randomUUID()}.${profile.name.split(".")[1]}`;
     }
 
 }

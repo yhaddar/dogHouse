@@ -1,4 +1,5 @@
 import {PutObjectCommand, S3Client} from "@aws-sdk/client-s3";
+import bcrypt from "bcrypt";
 
 export const supportedImage = (image: string): boolean => {
     const type: string[] = ["jpg", "jpeg", "png"];
@@ -33,3 +34,5 @@ export const sendToS3 = async (image: File, name: string, buffer: Buffer<ArrayBu
     );
     console.log("Successfully send file to S3");
 }
+
+export const hashedPassword = async (password: string) => await bcrypt.hash(password, 12);
