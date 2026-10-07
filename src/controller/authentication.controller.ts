@@ -1,4 +1,4 @@
-import {Login, Register} from "@/model/User";
+import {Login} from "@/model/User";
 import {NextRequest, NextResponse} from "next/server";
 import {UserRequest} from "@/request/user.request";
 import {comparePassword, hashedPassword, sendToS3, token} from "@/utils/methods";

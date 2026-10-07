@@ -1,7 +1,6 @@
 import {PutObjectCommand, S3Client} from "@aws-sdk/client-s3";
 import bcrypt from "bcrypt";
 import crypto from "crypto";
-import {Cookies} from "@/utils/cookies";
 
 export const supportedImage = (image: string): boolean => {
     const type: string[] = ["jpg", "jpeg", "png"];

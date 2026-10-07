@@ -32,7 +32,7 @@ export class UserRepository {
         return userByPhone != null;
     }
 
-    static async store(user: any): Promise<string> {
+    static async store(user: never): Promise<string> {
         await prisma.user.create({
             data: user
         });
