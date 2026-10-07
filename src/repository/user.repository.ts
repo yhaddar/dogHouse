@@ -1,8 +1,5 @@
-import { XOR } from "@/generated/prisma/internal/prismaNamespace";
-import { UserSelect, UserOmit, UserInclude, UserCreateInput, UserUncheckedCreateInput } from "@/generated/prisma/models";
 import {prisma} from "@/lib/prisma";
-import {Register} from "@/model/User";
-import {DefaultArgs} from "@prisma/client/runtime/client";
+import {Login} from "@/model/User";
 
 export class UserRepository {
 
@@ -42,4 +39,16 @@ export class UserRepository {
         return "your account created successfully.";
     }
 
+    static async findByEmail(email: string): Promise<Login | null> {
+        return prisma.user.findUnique({
+            where: {
+                email: email
+            },
+            select: {
+                id: true,
+                email: true,
+                password: true,
+            }
+        });
+    }
 }

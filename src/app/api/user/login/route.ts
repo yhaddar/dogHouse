@@ -5,6 +5,4 @@ export async function GET(){
     return NextResponse.json("dd");
 }
 
-export const  POST = async (req: NextRequest) => {
-    return await AuthenticationController.login(req);
-}
+export const  POST = async (req: NextRequest) => await AuthenticationController.login(req);

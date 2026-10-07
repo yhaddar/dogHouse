@@ -1,6 +1,7 @@
 import {Gender} from "@/utils/interfaces";
 
 export type Login = {
+    id: string;
     email: string;
     password: string;
 }

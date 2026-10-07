@@ -1,5 +1,7 @@
 import {PutObjectCommand, S3Client} from "@aws-sdk/client-s3";
 import bcrypt from "bcrypt";
+import crypto from "crypto";
+import {Cookies} from "@/utils/cookies";
 
 export const supportedImage = (image: string): boolean => {
     const type: string[] = ["jpg", "jpeg", "png"];
@@ -35,4 +37,10 @@ export const sendToS3 = async (image: File, name: string, buffer: Buffer<ArrayBu
     console.log("Successfully send file to S3");
 }
 
-export const hashedPassword = async (password: string) => await bcrypt.hash(password, 12);
+export const hashedPassword = async (password: string): Promise<string> => await bcrypt.hash(password, 12);
+export const comparePassword = async (password: string, passwordBody: string): Promise<boolean> => await bcrypt.compare(passwordBody, password);
+export const token= (): string => {
+    const t: string = crypto.randomBytes(64).toString("hex");
+    return crypto.createHash("sha256").update(t).digest("hex");
+
+}

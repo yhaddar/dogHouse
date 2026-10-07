@@ -2,6 +2,7 @@ import {UserRepository} from "@/repository/user.repository";
 import {Gender} from "@/utils/interfaces";
 import {supportedImage} from "@/utils/methods";
 import {randomUUID} from "node:crypto";
+import {Login} from "@/model/User";
 
 export class UserRequest {
 
@@ -102,6 +103,20 @@ export class UserRequest {
             if(!supportedImage(profile.name.split(".")[1]))
                 throw new Error("profile type is not supported");
         return `users/${randomUUID()}.${profile.name.split(".")[1]}`;
+    }
+
+    static async emailExist(email: string): Promise<Login | null> {
+        if(!email)
+            throw new Error("the email is required");
+
+        if(!email.toString().includes("@"))
+            throw new Error("email invalid")
+        else {
+            const findByEmail: Login | null = await UserRepository.findByEmail(email);
+            if(findByEmail == null)
+                throw new Error("Email does not exist");
+            return findByEmail;
+        }
     }
 
 }

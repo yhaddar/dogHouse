@@ -1,15 +1,48 @@
 import {Login, Register} from "@/model/User";
 import {NextRequest, NextResponse} from "next/server";
 import {UserRequest} from "@/request/user.request";
-import {hashedPassword, sendToS3} from "@/utils/methods";
+import {comparePassword, hashedPassword, sendToS3, token} from "@/utils/methods";
 import {UserRepository} from "@/repository/user.repository";
+import {StoreRepository} from "@/repository/store.repository";
+import {Cookies} from "@/utils/cookies";
 
 export class AuthenticationController {
     static async login(req: NextRequest){
 
-        const user: Login = await req.json();
+        try {
 
-        return NextResponse.json(user);
+            const userBody: Login = await req.json();
+
+            const user = {
+                email: await UserRequest.emailExist(userBody.email),
+                password: UserRequest.password(userBody.password),
+            }
+
+            if(user.email instanceof Object){
+
+                const compare: boolean = await comparePassword(user.email.password, user.password);
+                if(compare) {
+                    const t: string = token();
+                    if(t)
+                        await Cookies.store(t);
+                        await StoreRepository.store(user.email.id, token());
+                }
+                else
+                    throw new Error("Password Incorrect");
+            }
+
+            return NextResponse.json({
+                message: true,
+                status: 200,
+            });
+
+
+        }catch (err){
+            return NextResponse.json({
+                message: err instanceof Error ? err.message : err,
+                status: 400,
+            })
+        }
     }
 
     static async register(req: NextRequest){
@@ -32,7 +65,6 @@ export class AuthenticationController {
             if(image instanceof File){
                 const profile: string = UserRequest.profile(image);
                 const buffer: Buffer<ArrayBuffer> = Buffer.from(await image.arrayBuffer());
-                console.log(user.password);
                 await sendToS3(image, profile, buffer);
                 user.profile = profile;
             }
