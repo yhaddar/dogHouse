@@ -76,6 +76,11 @@ enum GenderProduct {
   UNISEX
 }
 
+enum Role {
+  SUPERVISOR
+  ADMIN
+  USER
+}
 model User {
   id String @id @default(uuid())
   first_name String
@@ -87,6 +92,7 @@ model User {
   ville String
   password String
   gender Gender
+  role Role @default(USER)
   email_verified DateTime?
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
