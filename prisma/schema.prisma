@@ -92,6 +92,7 @@ model User {
   updated_at DateTime @updatedAt
 
   dogs Dog[]
+  sessions Session[]
 }
 
 model Dog {
@@ -122,6 +123,8 @@ model ImageDog {
   dog_id String
   dog Dog @relation(fields: [dog_id], references: [id])
   image String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }
 
 model ImageDogWithCostumer {
@@ -129,6 +132,8 @@ model ImageDogWithCostumer {
   dog_id String
   dog Dog @relation(fields: [dog_id], references: [id])
   image String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }
 
 model Blogs {
@@ -137,6 +142,8 @@ model Blogs {
   description String
   category CategoryBlogs
   image String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }
 
 model Product {
@@ -150,4 +157,16 @@ model Product {
   material String
   gender GenderProduct
   weight Float
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model Session {
+  id String @id @default(uuid())
+  expired_at DateTime
+  token String
+  user_id String
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }
